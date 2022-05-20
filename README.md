@@ -1,0 +1,1 @@
+Run `pip install -r requirements.txt` and then `pytest`, to run the tests.
