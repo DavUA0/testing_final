@@ -1,21 +1,23 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import constants
 
-base_url_home = 'https://mil.am/'
 
 class HomePage:
-    URL = base_url_home
-    CENTER = (By.CLASS_NAME, 'center-header')
-    H3 = (By.TAG_NAME, 'h3')
-    NAV_LANG_ID = (By.ID, 'cd-navigation-lang')
-    ANCH = (By.TAG_NAME, 'a')
+    URL = constants.BASE_URL_HOME
+    CENTER = (By.CLASS_NAME, constants.HOME_CNTR)
+    H3 = (By.TAG_NAME, constants.H3)
+    NAV_LANG_ID = (By.ID, constants.HOME_NAV)
+    ANCH = (By.TAG_NAME, constants.ANCH)
 
 
     def __init__(self, browser):
         self.browser = browser
 
-    def load(self):
-        self.browser.get(self.URL)
+    def load(self, url=None):
+        if url is None:
+            url = self.URL
+        self.browser.get(url)
 
     def getLang(self):
         centerh = self.browser.find_elements(*self.CENTER)

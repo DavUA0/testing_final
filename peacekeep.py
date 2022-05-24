@@ -1,13 +1,13 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import constants
 
-base_url_peacekeep = 'https://mil.am/hy/pages/37'
 
 class PeacekeepPage:
-    URL = base_url_peacekeep
-    TBODY = (By.TAG_NAME, 'tbody')
-    TR = (By.TAG_NAME, 'tr')
-    TD = (By.TAG_NAME, 'td')
+    URL = constants.BASE_URL_PEACEKEEP
+    TBODY = (By.TAG_NAME, constants.TBD)
+    TR = (By.TAG_NAME, constants.TR)
+    TD = (By.TAG_NAME, constants.TD)
 
 
     def __init__(self, browser):
@@ -22,3 +22,5 @@ class PeacekeepPage:
         countries = first_row.find_elements(*self.TD)
         
         return countries[1:]
+
+    # TODO: add screenshot directive for the failing test

@@ -1,21 +1,28 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from home import HomePage
+import constants
 
-base_url_news = 'https://mil.am/en/news'
 
 class MilNewsPage:
-    URL = base_url_news
+    URL = constants.BASE_URL_NEWS
 
-    NAVIGATORS = (By.CLASS_NAME, 'breadcrumb')
-    TAGS = (By.CLASS_NAME, 'main-tag')
-    BADGES = (By.XPATH, "//div[@class='badge-top green']")
-    H5 = (By.TAG_NAME, 'h5')
+    NAVIGATORS = (By.CLASS_NAME, constants.NEWS_NAV)
+    TAGS = (By.CLASS_NAME, constants.NEWS_TAGS)
+    BADGES = (By.XPATH, constants.NEWS_BADGES)
+    H5 = (By.TAG_NAME, constants.H5)
+    HOME_NAV_BAR = (By.ID, constants.HOME_NAV_BAR)
+    ANCHS = (By.TAG_NAME, constants.ANCH)
 
     def __init__(self, browser):
         self.browser = browser
 
     def load(self):
-        self.browser.get(self.URL)
+        home = HomePage(self.browser)
+        home.load()
+        news_url = home.browser.find_element(*self.HOME_NAV_BAR).find_elements(*self.ANCHS)[4].get_attribute('href')
+        home.load(news_url)
+        
 
     def getNavigatorNames(self):
         navigators = self.browser.find_element(*self.NAVIGATORS)

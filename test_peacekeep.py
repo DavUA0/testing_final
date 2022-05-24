@@ -23,3 +23,5 @@ def test_countries(setup_object):
     assert countries[0].text == 'Աֆղանստան'
     assert countries[1].text == 'Կոսովո'
     assert countries[2].text == 'Լիբանան'
+
+    # the last assert is meant to fail

@@ -1,21 +1,23 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from home import HomePage
+import constants
 
-base_url_contact = 'https://mil.am/en/contacts'
 
 class ContactPage:
-    URL = base_url_contact
-
-    H4 = (By.TAG_NAME, 'h4')
-    ANCH = (By.TAG_NAME, 'a')
-    CONTACTS_DIV = (By.CLASS_NAME, 'card-address')
-    MAIL_ANCH = (By.XPATH, "//a[contains(@href,'mailto')]")
+    H4 = (By.TAG_NAME, constants.H4)
+    ANCH = (By.TAG_NAME, constants.ANCH)
+    CONTACTS_DIV = (By.CLASS_NAME, constants.CONT_DIV_SELECTOR)
+    MAIL_ANCH = (By.XPATH, constants.CONT_MAIL_ANCH)
 
     def __init__(self, browser):
         self.browser = browser
 
     def load(self):
-        self.browser.get(self.URL)
+        home = HomePage(self.browser)
+        home.load()
+        contacts = home.browser.find_element(By.CLASS_NAME, 'footer-links-map').find_elements(*self.ANCH)[0]
+        contacts.click()
 
     def getHotlineNumbers(self):
         h4 = self.browser.find_element(*self.H4)

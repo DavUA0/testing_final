@@ -1,11 +1,12 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from home import HomePage
+import constants
 
-base_url_struct = 'https://mil.am/en/structures/12'
 
 class StructurePage:
-    URL = base_url_struct
-    DEPS = (By.XPATH, "//div[@class='col-xs-12 col-sm-6']")
+    URL = constants.BASE_URL_STRUCT
+    DEPS = (By.XPATH, constants.STRUCT_DEP_SELECTOR)
 
     def __init__(self, browser):
         self.browser = browser

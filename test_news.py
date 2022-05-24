@@ -18,7 +18,7 @@ def test_navigator(setup_object):
     news_page = setup_object
 
     # check the upper navigators to make sure we are on the news page
-    assert news_page.getNavigatorNames().text == "Home News"
+    assert news_page.getNavigatorNames().text == "Գլխավոր Լուրեր"
 
 def test_first_tag_header(setup_object):
     news_page = setup_object
